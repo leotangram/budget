@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Error from './Error'
 
 function Form(props) {
   // State
@@ -26,6 +27,9 @@ function Form(props) {
   return (
     <form onSubmit={addExpenditure}>
       <h2>Agrega tus gastos aquí</h2>
+      {error ? (
+        <Error message='Ambos campos son obligatorios o presupuesto incorrecto' />
+      ) : null}
       <div className='field'>
         <label>Nombre gasto</label>
         <input
