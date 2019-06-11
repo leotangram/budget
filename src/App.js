@@ -4,13 +4,24 @@ import Question from './components/Question'
 function App() {
   // state
   const [budget, setBudget] = useState(0)
+  const [questionBudget, setQuestionBudget] = useState(true)
 
   return (
     <div className='App container'>
       <header>
         <h1>Gasto semanal</h1>
         <div className='principal-content content'>
-          <Question setBudget={setBudget} />
+          {questionBudget ? (
+            <Question
+              setBudget={setBudget}
+              setQuestionBudget={setQuestionBudget}
+            />
+          ) : (
+            <div className='row'>
+              <div className='one-half column'>Formulario aquí</div>
+              <div className='one-half column' />
+            </div>
+          )}
         </div>
       </header>
     </div>

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
 
 function Question(props) {
-  const { setBudget } = props
+  const { setBudget, setQuestionBudget } = props
 
   // Definir el state
   const [quantity, setQuantity] = useState(0)
@@ -20,6 +20,7 @@ function Question(props) {
     // Si se pasa la validación
     setError(false)
     setBudget(quantity)
+    setQuestionBudget(false)
   }
 
   return (
