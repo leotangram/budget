@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import Error from './Error'
+import shortid from 'shortid'
 
 function Form(props) {
+  const { setExpendiure } = props
+
   // State
   const [expenditureName, setExpenditureName] = useState('')
   const [expenditureQuantity, setExpenditureQuantity] = useState(0)
@@ -21,7 +24,22 @@ function Form(props) {
       return
     }
 
+    // Construir objeto de gasto
+    const expenditure = {
+      expenditureName,
+      expenditureQuantity,
+      id: shortid.generate()
+    }
+
     // Pasar el gasto al componente principal
+    setExpendiure(expenditure)
+
+    // Eliminar alerta
+    setError(false)
+
+    // Resetear el form
+    setExpenditureName('')
+    setExpenditureQuantity('')
   }
 
   return (
@@ -37,6 +55,7 @@ function Form(props) {
           className='u-full-widthh'
           placeholder='Ej. transporte'
           onChange={e => setExpenditureName(e.target.value)}
+          value={expenditureName}
         />
       </div>
       <div className='field'>
@@ -46,6 +65,7 @@ function Form(props) {
           className='u-full-widthh'
           placeholder='Ej. 300'
           onChange={e => setExpenditureQuantity(parseInt(e.target.value, 10))}
+          value={expenditureQuantity}
         />
       </div>
       <input
