@@ -18,10 +18,14 @@ function App() {
       const expensesList = [...expenses, expenditure]
       setExpenses(expensesList)
 
+      // Restar el presupuesto
+      const remainingBudget = remaining - expenditure.expenditureQuantity
+      setRemaining(remainingBudget)
+
       // Una vez que se agrega, lo ponemos como false
       setCreateExpenditure(false)
     }
-  }, [createExpenditure])
+  }, [createExpenditure, expenses, expenditure, remaining])
 
   return (
     <div className='App container'>
