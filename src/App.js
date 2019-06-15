@@ -7,13 +7,19 @@ function App() {
   // state
   const [budget, setBudget] = useState(0)
   const [questionBudget, setQuestionBudget] = useState(true)
+  const [createExpenditure, setCreateExpenditure] = useState(false)
   const [expenditure, setExpenditure] = useState({})
   const [expenses, setExpenses] = useState([])
 
   useEffect(() => {
-    const expensesList = [...expenses, expenditure]
-    setExpenses(expensesList)
-  }, [])
+    if (createExpenditure) {
+      const expensesList = [...expenses, expenditure]
+      setExpenses(expensesList)
+
+      // Una vez que se agrega, lo ponemos como false
+      setCreateExpenditure(false)
+    }
+  }, [createExpenditure])
 
   return (
     <div className='App container'>
@@ -28,7 +34,10 @@ function App() {
           ) : (
             <div className='row'>
               <div className='one-half column'>
-                <Form setExpenditure={setExpenditure} />
+                <Form
+                  setExpenditure={setExpenditure}
+                  setCreateExpenditure={setCreateExpenditure}
+                />
               </div>
               <div className='one-half column'>
                 <List expenses={expenses} />

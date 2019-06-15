@@ -3,7 +3,7 @@ import Error from './Error'
 import shortid from 'shortid'
 
 function Form(props) {
-  const { setExpenditure } = props
+  const { setExpenditure, setCreateExpenditure } = props
 
   // State
   const [expenditureName, setExpenditureName] = useState('')
@@ -33,6 +33,7 @@ function Form(props) {
 
     // Pasar el gasto al componente principal
     setExpenditure(expenditure)
+    setCreateExpenditure(true)
 
     // Eliminar alerta
     setError(false)
